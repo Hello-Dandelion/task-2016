@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三栏式布局</title>
+    <style>
+        body,div,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 20px;
+        }
+        .box{
+            padding: 20px;
+            overflow: auto;
+            min-width: 700px;
+            border: 1px solid #999;
+            background-color: #eee;
+        }
+        .item{
+            padding: 20px;
+            border: 1px solid #999;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .left{
+            float: left;
+            width: 200px;
+        }
+        .center{
+            margin-left: 220px;
+            margin-right: 140px;
+            width: auto;
+        }
+        .right{
+            float: right;
+            padding: 0;
+            width: 120px;
+        }
+        .logo-icon{
+            width: 80px;
+            height: 80px;
+        }
+        .logo-icon img{
+            width: 100%;
+        }
+        .float-ele{
+            float: left;
+        }
+        .logo-name{
+            margin-left: 10px;
+        }
+        .center h2:first-child{
+            margin-top: 0;
+        }
+        .center p:last-child{
+            margin-bottom: 0;
+        }
+        .right ul{
+            list-style: none;
+        }
+        .right ul>li{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item left">
+        <div class="float-ele logo-icon">
+            <img src="../images/cat.png" alt="猫">
+        </div>
+        <div class="float-ele logo-name">陈小哇</div>
+    </div>
+    <div class="item right">
+        <ul>
+            <li class="logo-icon"><img src="../images/cat.png" alt=""></li>
+            <li class="logo-icon"><img src="../images/cat.png" alt=""></li>
+            <li class="logo-icon"><img src="../images/cat.png" alt=""></li>
+        </ul>
+    </div>
+    <div class="item center">
+        <article>
+            <h2>关于团队的介绍：</h2>
+            <p>成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此。</p>
+            <h3>XX概述</h3>
+            <p>成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此，
+                成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此，
+                成都机场那边的不成熟时彼此是彼此，成都机场那边的不成熟时彼此是彼此。
+            </p>
+        </article>
+    </div>
+
+</div>
+<script>
+
+</script>
+</body>
+</html>

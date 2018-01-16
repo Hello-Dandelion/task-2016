@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>零基础HTML及CSS编码（一）</title>
+    <style>
+        body,nav,div,aside,article,ul,ol,li,p{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #e9e9e9;
+        }
+        h3,
+        .article-msg{
+            color: #888;
+        }
+        .article-msg{
+            font-size: 14px;
+            line-height: 30px;
+        }
+        p{
+            line-height: 24px;
+        }
+        /*头部和尾部样式*/
+        .nav-main,.footer-main{
+            height: 60px;
+            background-color: #333;
+        }
+        .footer-main{
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
+        }
+        /*头部样式*/
+        .nav-main{
+            padding: 0 30px;
+        }
+        .nav-main>ul{
+            float: right;
+
+        }
+        .nav-main>img{
+            margin-top: 11px;
+        }
+        .nav-main>ul>li{
+            float:left;
+            margin-left: 30px;
+            line-height: 60px;
+        }
+        .nav-main>ul>li>a{
+            font-size: 12px;
+            color: #fff;
+        }
+        .nav-main>ul>li.active>a{
+            color: #ccc;
+        }
+        /*主体内容样式*/
+        .main-content{
+            margin: 20px;
+        }
+        .main-content img{
+            margin: 10px 0;
+        }
+        .main-body{
+            padding: 20px 20px 40px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        .ul-off-style,
+        p{
+            text-indent: 2em;
+        }
+        .ul-off-style{
+            list-style: none;
+        }
+        .ol-off-style{
+            margin-left: 40px;
+        }
+        /*'图片'内容样式*/
+        dl{
+            padding: 20px;
+            width: 200px;
+            height: 230px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        dd{
+            -webkit-margin-start:0;
+        }
+        dl img{
+            width: 100%;
+        }
+        /*table*/
+        .table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table>thead>tr{
+            background-color: #333;
+            color: #fff;
+        }
+        .table>tfoot>tr{
+            background-color: #ccc;
+        }
+        .main-body:last-child h2:before{
+            content: '';
+            margin-right: 10px;
+            border: 3px solid #ccc;
+        }
+        .items{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .items>label{
+            display: inline-block;
+            vertical-align: top;
+            width: 200px;
+            text-align: right;
+        }
+        .items>div{
+            display: inline-block;
+        }
+        .notice{
+            font-size: 12px;
+            color: #777;
+        }
+        button{
+            width: 100%;
+            border: navajowhite;
+            border-radius: 4px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+            background-color: #06b4ef;
+        }
+    </style>
+</head>
+<body>
+<nav class="nav-main">
+    <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" alt="">
+    <ul>
+        <li class="active"><a href="">导航链接1</a></li>
+        <li><a href="">导航链接2</a></li>
+        <li><a href="">导航链接3</a></li>
+        <li><a href="">导航链接4</a></li>
+    </ul>
+</nav>
+<main class="main-content">
+    <article class="main-body">
+        <h2>文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <span class="article-msg">文章作者&nbsp;文章发表时间</span>
+        <p>这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，<a href="http://ife.baidu.com">这里有一个链接到http://ife.baidu.com</a>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，
+        </p>
+        <img src="../images/cat.png" alt="猫">
+        <p>这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，<a href="http://ife.baidu.com">这里有一个链接到http://ife.baidu.com</a>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，
+        </p>
+    </article>
+    <article class="main-body">
+        <h2>另一篇文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <span class="article-msg">文章作者&nbsp;文章发表时间</span>
+        <p>这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，换行了，<br>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，<a href="http://ife.baidu.com">这里有一个链接到http://ife.baidu.com</a>
+            这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，这里有很长的段落，
+            这里有很长的段落，这里有很长的段落，
+        </p>
+        <img src="../images/cat.png" alt="猫">
+        <ul class="ul-off-style">
+            <li>列表项目1</li>
+            <li>列表项目2</li>
+            <li>列表项目3</li>
+        </ul>
+
+    </article>
+    <div class="main-body">
+        <h2>图片</h2>
+        <dl>
+            <dt>好看的图片</dt>
+            <dd><img src="../images/cat.png" alt="猫"></dd>
+        </dl>
+        <dl>
+            <dt>好看的图片</dt>
+            <dd><img src="../images/cat.png" alt="猫"></dd>
+        </dl>
+        <dl>
+            <dt>好看的图片</dt>
+            <dd><img src="../images/cat.png" alt="猫"></dd>
+        </dl>
+    </div>
+    <article class="main-body">
+        <h2>最后一篇文章一级标题</h2>
+        <h3>文章二级标题</h3>
+        <span class="article-msg">文章作者&nbsp;文章发表时间</span>
+        <ol class="ol-off-style">
+            <li>排名1</li>
+            <li>排名2</li>
+            <li>排名3</li>
+        </ol>
+        <span>下面是一个表格，给表格加一个border=1</span>
+        <table class="table" border="1">
+            <thead>
+            <tr>
+                <th>表头</th>
+                <th>表头</th>
+                <th>表头</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>内容</td>
+                <td>内容</td>
+                <td><a href="">操作</a></td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td>内容</td>
+                <td><a href="">操作</a></td>
+            </tr>
+            <tr>
+                <td>内容</td>
+                <td>内容</td>
+                <td><a href="">操作</a></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>总计</td>
+                <td colspan="2">1000</td>
+            </tr>
+            </tfoot>
+        </table>
+        </dl>
+    </article>
+    <aside class="main-body">
+        <h2>侧栏注册窗口标题</h2>
+        <form action="#">
+            <div class="items">
+                <label>邮箱：</label>
+                <div>
+                    <input type="text" placeholder="文本输入框">
+                    <div class="notice">邮箱地址按照要求输入</div>
+                </div>
+            </div>
+            <div class="items">
+                <label>密码：</label>
+                <input type="text" placeholder="文本输入框">
+            </div>
+            <div class="items">
+                <label>确认密码：</label>
+                <div>
+                    <input type="text" placeholder="文本输入框">
+                    <div class="notice">密码为6-16位英文数字</div>
+                </div>
+            </div>
+            <div class="items">
+                <label>性别：</label>
+                <input type="radio" checked value="">男
+                <input type="radio" value="">女
+            </div>
+            <div class="items">
+                <label>城市：</label>
+                <select name="" >
+                    <option value="0">成都</option>
+                    <option value="1">上海</option>
+                    <option value="2">杭州</option>
+                </select>
+            </div>
+            <div class="items">
+                <label>爱好：</label>
+                <input type="checkbox" value="" >运动
+                <input type="checkbox" value="" >唱歌
+                <input type="checkbox" value="" >敲代码
+            </div>
+            <div class="items">
+                <label>个人描述：</label>
+                <textarea name=""  cols="30" rows="10" placeholder="这是多行输入框"></textarea>
+            </div>
+            <div class="items">
+                <button>提交</button>
+            </div>
+        </form>
+    </aside>
+</main>
+<footer class="footer-main">
+    版权所有&copy;
+</footer>
+
+<script>
+
+</script>
+</body>
+</html>

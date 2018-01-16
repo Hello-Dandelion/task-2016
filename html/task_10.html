@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox布局练习</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .box-wrap{
+            display: flex;
+        }
+        .box-item{
+            padding: 20px;
+            flex: 1;
+            -webkit-flex: 1;
+        }
+        .item{
+            width: 150px;
+        }
+        .item-1{
+            height: 120px;
+        }
+        .item-2{
+            height: 100px;
+        }
+        .item-3{
+            height: 40px;
+        }
+        .item-4{
+            height: 200px;
+        }
+        .box-item-red{
+            border: 1px solid red;
+        }
+        .box-item-blue{
+            border: 1px solid blue;
+        }
+        @media (min-width: 768px) {
+            .box-wrap{
+                -webkit-align-items: center;
+            }
+        }
+        @media (max-width: 768px){
+            .box-wrap{
+                /*min-width: 600px;*/
+                flex-wrap: wrap;
+                -webkit-flex-wrap: wrap;
+                align-content: flex-start;
+                -webkit-align-content: flex-start;
+            }
+            .box-item-4{
+                order: -1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<!--
+只需要完成HTML，CSS代码编写，不需要写JavaScript
+屏幕宽度小于 640px 时，调整 Flexbox 的属性以实现第四个元素移动到最前面的效果，而不要改动第一个元素的边框颜色与高度实现效果图。
+思考 Flexbox 布局和网格布局的异同，以及分别适用于什么样的场景。可以搜索一下别人的结论，不过要保持思辨的态度，不可直接接受别人的观点。
+-->
+
+<div class="box-wrap">
+    <div class="box-item box-item-1">
+        <div class="item item-1 box-item-red"></div>
+    </div>
+    <div class="box-item box-item-2">
+        <div class="item item-2 box-item-red"></div>
+    </div>
+    <div class="box-item box-item-3">
+        <div class="item item-3 box-item-red"></div>
+    </div>
+    <div class="box-item box-item-4">
+        <div class="item item-4 box-item-blue"></div>
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

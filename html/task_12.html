@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习CSS3的新特性</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 20px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        table,tr,td,th{
+            border: 2px solid #fff;
+        }
+        table>thead>tr{
+            background-color: #000;
+        }
+        table>thead>tr>th{
+            color: #fff;
+        }
+        table>tbody>tr:nth-child(even){
+            background-color: #eee;
+        }
+        table>tbody>tr:nth-child(1),
+        table>tbody>tr:nth-child(2),
+        table>tbody>tr:nth-child(3){
+            color: red;
+        }
+        .input-wrap{
+            margin: 40px 0;
+        }
+        .input-wrap input{
+            margin: 0 auto;
+            display: block;
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        .input-wrap input{
+            outline: none;
+            -webkit-appearance: none;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .input-wrap input:focus{
+            border: 1px solid #18d4ff;
+            box-shadow: 0px 0px 5px #18d4ff;
+            animation: move 0.5s linear;
+            -webkit-animation: move 0.2s ease-in-out;
+            -webkit-animation-fill-mode: forwards;
+        }
+        @keyframes move {
+            0%{
+                transform: scaleX(0.2);
+                -webkit-transform: scaleX(0.2);
+            }
+            100%{
+                transform: scaleX(2.0);
+                -webkit-transform: scaleX(2.0);
+
+            }
+        }
+    </style>
+</head>
+<body>
+<!--
+实现单双行列不同颜色，且前三行特殊表示的表格
+实现正常状态和focus状态宽度不一致的input文本输入框，且鼠标焦点进入输入框时，宽度的变化以动画呈现
+不使用JavaScript，实现一个Banner图轮流播放的效果，且点击右下角的1，2，3可以切换到对应Banner图片
+-->
+<table>
+    <thead>
+    <tr>
+        <th>排名</th>
+        <th>网站</th>
+        <th>热度</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>3.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>4.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>5.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>6.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>7.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>8.</td>
+        <td>学习CSS3的新特性</td>
+        <td>100</td>
+    </tr>
+    </tbody>
+</table>
+<div class="input-wrap">
+    <input type="text">
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

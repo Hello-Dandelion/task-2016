@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>响应式网格（栅格化）布局</title>
+    <style>
+        body,div{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin: 20px;
+        }
+        .row{
+            width: 100%;
+            text-align: center;
+        }
+        .row>div{
+            float: left;
+            margin: 15px;
+            /*padding:0 5px;*/
+            height: 50px;
+            line-height: 50px;
+            box-sizing: border-box;
+            border: 1px solid #e3e3e3;
+            background-color: #eee;
+        }
+        .row>div:before,
+        .row>div:after{
+            content: '';
+            clear: both;
+        }
+        @media (min-width:768px) {
+            .col-sm-1{
+                width: calc((100%/12) - 30px);
+            }
+            .col-sm-2{
+                width: calc((100%/(12/2)) - 30px);
+            }
+            .col-sm-3{
+                width: calc((100%/(12/3)) - 30px);
+            }
+            .col-sm-4{
+                width: calc((100%/(12/4)) - 30px);
+            }
+            .col-sm-5{
+                width: calc((100%/(12/5)) - 30px);
+            }
+            .col-sm-6{
+                width: calc(100%/(12/6) - 30px);
+            }
+            .col-sm-7{
+                width: calc((100%/(12/7)) - 30px);
+            }
+            .col-sm-8{
+                width: calc((100%/(12/8)) - 30px);
+            }
+            .col-sm-9{
+                width: calc((100%/(12/9)) - 30px);
+            }
+            .col-sm-10{
+                width: calc(100%/(12/10) - 30px);
+            }
+            .col-sm-10{
+                width: calc(100%/(12/11) - 30px);
+            }
+            .col-sm-12{
+                width: calc(100% - 30px);
+            }
+        }
+        @media (max-width:768px) {
+            .col-xs-1{
+                width: calc((100%/12) - 30px);
+            }
+            .col-xs-2{
+                width: calc((100%/(12/2)) - 30px);
+            }
+            .col-xs-3{
+                width: calc((100%/(12/3)) - 30px);
+            }
+            .col-xs-4{
+                width: calc((100%/(12/4)) - 30px);
+            }
+            .col-xs-5{
+                width: calc((100%/(12/5)) - 30px);
+            }
+            .col-xs-6{
+                width: calc(100%/(12/6) - 30px);
+            }
+            .col-xs-7{
+                width: calc((100%/(12/7)) - 30px);
+            }
+            .col-xs-8{
+                width: calc(100%/(12/8) - 30px);
+            }
+            .col-xs-9{
+                width: calc((100%/(12/9)) - 30px);
+            }
+            .col-xs-10{
+                width: calc((100%/(12/10)) - 30px);
+            }
+            .col-xs-11{
+                width: calc((100%/(12/11)) - 30px);
+            }
+            .col-xs-12{
+                width: calc(100% - 30px);
+            }
+        }
+    </style>
+</head>
+<body>
+<!--
+以 BootStrap 的网格系统为例，DOM 元素类名形如 col-sm-4；
+其中 col 是“列” column 的缩写；sm 是 medium 的缩写，
+适用于应屏幕宽度大于 768px 的场景；
+4 是占四栏的意思。因此，col-sm-4 的意思是，
+在屏幕宽度大于 768px 时，该元素占四栏。
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-xs-6"></div>
+        <div class="col-sm-4 col-xs-6"></div>
+        <div class="col-sm-4 col-xs-12"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-3"></div>
+        <div class="col-sm-6 col-xs-6"></div>
+        <div class="col-sm-3 col-xs-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 col-xs-2"></div>
+        <div class="col-sm-1 col-xs-2"></div>
+        <div class="col-sm-2 col-xs-8"></div>
+        <div class="col-sm-2 col-xs-3"></div>
+        <div class="col-sm-6 col-xs-3"></div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+</body>
+</html>

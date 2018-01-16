@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>零基础JavaScript编码（二）</title>
+</head>
+<body>
+<!--
+页面加载后，将提供的空气质量数据数组，
+按照某种逻辑（比如空气质量大于60）进行过滤筛选，
+最后将符合条件的数据按照一定的格式要求显示在网页上
+-->
+<h3>污染城市列表</h3>
+<ul id="aqi-list">
+    <!--
+        <li>第一名：福州（样例），10</li>
+        <li>第二名：福州（样例），10</li>
+    -->
+</ul>
+<script>
+    var aqiData = [
+        ["北京", 110],
+        ["上海", 50],
+        ["福州", 10],
+        ["广州", 50],
+        ["成都", 90],
+        ["西安", 100]
+    ];
+
+    (function () {
+
+        /*
+        在注释下方编写代码
+        遍历读取aqiData中各个城市的数据
+        将空气质量指数大于60的城市显示到aqi-list的列表中
+        */
+        /*var arr = aqiData.filter(function (item) {
+            return item[1] > 60
+        });*/
+        let aqiList = document.getElementById('aqi-list');
+        aqiData.sort(function (x,y) {
+            return x[1] < y[1];
+        });
+        // 第一种方式
+        /*for(let i = 0; i < aqiData.length;i++){
+            if(aqiData[i][1] > 60){
+                let li = document.createElement('li');
+                li.innerText = `第${i+1}名：${aqiData[i][0]}，${aqiData[i][1]}`;
+                aqiList.append(li);
+            }
+        }*/
+        // 第二种方式
+        let str = '';
+        for(let i = 0; i < aqiData.length;i++){
+            if(aqiData[i][1] > 60){
+                str += `<li>第${i+1}名：${aqiData[i][0]}，${aqiData[i][1]}</li>`;
+            }
+        }
+        aqiList.innerHTML = str;
+    })();
+</script>
+</body>
+</html>
