@@ -1,0 +1,85 @@
+/*加载样式*/
+.loading{
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -35px 0 0 -51px;
+    width: 102px;
+    height: 70px;
+}
+.loading-item{
+    margin: 0 5px;
+    float: left;
+    width: 10px;
+    height: 70px;
+    border-radius: 4px;
+    background-color: #bec4c8;
+    /*animation: sk-circleFadeDelay-3 1.2s infinite ease-in-out both;
+    -webkit-animation: sk-circleFadeDelay-3 1.2s infinite ease-in-out both;*/
+}
+.loading-item-1{
+    animation-delay: -1.2s;
+    -webkit-animation-delay: -1.2s;
+}
+.loading-item-2{
+    animation-delay: -1.0s;
+    -webkit-animation-delay: -1.0s;
+}
+.loading-item-3{
+    animation-delay: -0.8s;
+    -webkit-animation-delay: -0.8s;
+}
+.loading-item-4{
+    animation-delay: -0.6s;
+    -webkit-animation-delay: -0.6s;
+}
+.loading-item-5{
+    animation-delay: -0.4s;
+    -webkit-animation-delay: -0.4s;
+}
+@-webkit-keyframes sk-circleFadeDelay-3 {
+    0%, 39%, 100% { transform: scaleY(0.5);-webkit-transform: scaleY(0.5);opacity: 0.2; }
+    40% { transform: scaleY(1.4);-webkit-transform: scaleY(1.4);opacity: 1; }
+}
+@keyframes sk-circleFadeDelay-3 {
+    0%, 39%, 100% { transform: scaleY(0.5); -webkit-transform: scaleY(0.5);opacity: 0.2; }
+    40% { transform: scaleY(1.4);-webkit-transform: scaleY(1.4);opacity: 1; }
+}
+.container{
+    /*display: none;*/
+    margin: 30px auto;
+    height: 500px;
+
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.left-col{
+    background-color: #e22269;
+}
+/*头像部分*/
+.person-pic{
+    margin:35px 20px;
+    height: 240px;
+}
+.person-pic>div{
+    height: inherit;
+    background-color: #fff;
+}
+.person-msg-box{
+    margin: 20px 0;
+}
+.person-msg{
+    /*height: 200px;*/
+}
+.person-msg>li{
+    width: 100%;
+    margin: 10px 0;
+}
+.icon{
+    font-size: 22px;
+    margin-right: 5px;
+}
+.title{
+    font-size: 24px;
+}
