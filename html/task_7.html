@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现常见的技术产品官网的页面架构及样式布局</title>
+    <style>
+        body,ul{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: "Microsoft YaHei";
+            font-size: 14px;
+            color: #444;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        input,textarea,select{
+            outline: none;
+            -webkit-appearance: none
+        }
+        /*白色下横线*/
+        .line-bottom:after{
+            content: '';
+            display: block;
+            position: relative;
+            left: 50%;
+            margin-left: -20px;
+            width: 40px;
+            height: 2px;
+            background-color: #fff;
+        }
+        @media (max-width: 1280px) {
+            body{
+                width: 1280px;
+                overflow: scroll;
+            }
+        }
+        .nav{
+            padding: 0 50px;
+            height: 60px;
+        }
+        .nav-logo,
+        .nav-detail{
+            display: inline-block;
+        }
+        .clearfix:after{
+            content: '';
+            clear: both;
+        }
+        .nav-logo{
+            float: left;
+            padding-left: 40px;
+            font: 21px 'SimHei';
+            line-height: 60px;
+            color: #393a3a;
+            background: url("../images/task7img/sm-logo.png") no-repeat left center;
+            background-size: 31px 31px;
+        }
+        .nav-detail{
+            float: right;
+        }
+        .nav-detail .nav-item{
+            float: left;
+            padding: 0 10px;
+            margin-left: 20px;
+            margin-top: -3px;
+            line-height: 60px;
+        }
+        .nav-detail .nav-item.active{
+            border-bottom: 3px solid #e74f4d;
+        }
+        .nav-detail .nav-item a{
+            color: #605;
+            font-size: 14px;
+        }
+        .nav-detail .nav-item:last-child{
+            padding-left: 20px;
+            background: url("../images/task7img/user-icon.png") no-repeat left center;
+            background-size: 14px 17px;
+        }
+        .nav-detail .nav-item:last-child a{
+            color: #e74f4d;
+        }
+        /*time of new-life*/
+        .new-life{
+            position: relative;
+            height: 854px;
+            background: url("../images/task7img/img-1.png") no-repeat center;
+            background-size: 100%;
+        }
+        .new-life-box{
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            margin-top: -140px;
+            width: 600px;
+            height: 280px;
+            color: #fff;
+        }
+        .new-life-title{
+            font-size: 60px;
+        }
+        .new-life-msg{
+            margin-top: 15px;
+            font-size: 21px;
+        }
+        .new-life-start{
+            margin-top: 72px;
+            font-size: 26px;
+            width: 280px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 3px;
+            text-align: center;
+            background-color: #e74f4d;
+        }
+        /*4个关于new life 的介绍*/
+        .four-new-life{
+            display: flex;
+        }
+        .four-new-life>li{
+            flex: 1;
+            padding: 30px 0;
+        }
+        .four-new-life>li>img,
+        .about-new-life>img{
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .four-new-life>li>div{
+            padding: 0 60px;
+            height: 48px;
+            line-height: 24px;
+            text-align: center;
+            font-family: simHei;
+            word-break: break-all;
+            border-right: 1px solid #bbb !important;
+        }
+        .four-new-life>li:last-child>div{
+            border-right: none !important;
+        }
+        /*关于新世界*/
+        .about-new-life{
+            padding: 60px;
+            background-color: #eee;
+        }
+        .about-new-life>img{
+            margin-bottom: 40px;
+        }
+        .about-new-life>div{
+            font-size: 54px;
+            text-align: center;
+            font-family: simHei;
+            color: #333;
+            opacity: 0.5;
+        }
+        /*下拉框*/
+
+        .area-new-life{
+            height: 341px;
+            text-align: center;
+            background:url("../images/task7img/img-2.png") no-repeat center;
+            background-size: 100%;
+            color: #fff;
+        }
+        .area-new-life-box{
+            height: inherit;
+            background-color: rgba(231,93,92,0.1);
+
+        }
+        .area-new-life-look{
+            padding: 50px 0 10px;
+            font-size: 21px;
+            line-height: 42px;
+        }
+        .area-new-life-look-msg{
+            margin-bottom: 50px;
+            font-size: 14px;
+            line-height: 30px;
+        }
+        .area-new-life-flex{
+            padding: 0 100px;
+            display: flex;
+        }
+        .area-new-life-item{
+            margin: 0 20px;
+            flex: 1;
+            height: 30px;
+            border: 1px solid #d55d5c;
+        }
+        .area-new-life-item>select{
+            padding-left: 10px;
+            width: 100%;
+            height: inherit;
+            border: none;
+            background: url("../images/task7img/selec-arrow.png") no-repeat right center;
+            background-size: 19px 18px;
+            background-position-x: calc(100% - 5px);
+            color: #666;
+        }
+        .area-new-life-item>select>option {
+            background: #ccc url("../images/task7img/arrow-down.png") no-repeat left center;
+            background-size: 10px 6px;
+            background-position-x: 10px;
+        }
+        .area-new-life-item>select>option:hover{
+            background-color: #d55d5c;
+        }
+        .area-new-life-item:last-child{
+            line-height: 30px;
+            background-color: #d55d5c;
+        }
+        /*活动-人物*/
+        .activity-new-life{
+            height: 400px;
+            background-color: #938e8c;
+        }
+        /*新世代*/
+        .time-new-life{
+            height: 1088px;
+        }
+        /*成为志愿者*/
+        .protocol-new-life{
+            height: 600px;
+        }
+        /*联系*/
+        .contact-new-life{
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<!--
+设计稿是有一定宽度的，这个宽度为页面的最小宽度，也就是说，
+当浏览器窗口宽度小于设计稿宽度时，允许出现横向滚动条，页面内容宽度保持不变
+但是当浏览器窗口宽度大于设计稿宽度时，页面部分内容的宽度应该保持和浏览器窗口宽度一致，
+具体哪些部分题目不做具体指明，看看大家的判断如何。
+页面宽度固定（定宽）
+只需要完成HTML，CSS代码编写，不需要写JavaScript
+设计稿中的图片、文案均可自行设定
+在Chrome中完美实现符合标注中的各项说明
+有能力的同学可以尝试跨浏览器的兼容性
+有能力的同学可以在实现一遍后尝试用less, sass或者stylus等再实现一次
+-->
+<nav class="nav">
+    <div class="nav-logo">新世界</div>
+    <ul class="nav-detail clearfix">
+        <li class="nav-item active"><a href="#">首页</a></li>
+        <li class="nav-item"><a href="#">最新活动</a></li>
+        <li class="nav-item"><a href="#">项目介绍</a></li>
+        <li class="nav-item"><a href="#">爱心社区</a></li>
+        <li class="nav-item"><a href="#">关于我们</a></li>
+        <li class="nav-item"><a href="#">登录</a></li>
+    </ul>
+</nav>
+<div class="new-life">
+    <div class="new-life-box">
+        <div class="new-life-title">Time of new life</div>
+        <div class="new-life-msg">新时代，年轻的人们让我们一起<br>体验新生活，享受新生活</div>
+        <div class="new-life-start">开始体验</div>
+    </div>
+</div>
+<ul class="four-new-life">
+    <li>
+        <img src="../images/task7img/icon-1.png" alt="">
+        <div>当浏览器窗口宽度小于设计稿宽度时，允许出现横向滚动条</div>
+    </li>
+    <li>
+        <img src="../images/task7img/icon-2.png" alt="">
+        <div>当浏览器窗口宽度小于设计稿宽度时，允许出现横向滚动条</div>
+    </li>
+    <li>
+        <img src="../images/task7img/icon-3.png" alt="">
+        <div>当浏览器窗口宽度小于设计稿宽度时，允许出现横向滚动条</div>
+    </li>
+    <li>
+        <img src="../images/task7img/icon-4.png" alt="">
+        <div>当浏览器窗口宽度小于设计稿宽度时，允许出现横向滚动条</div>
+    </li>
+</ul>
+<div class="about-new-life">
+    <img src="../images/task7img/lg-logo.png" alt="">
+    <div>关于新世界，你不知道还有什么？</div>
+</div>
+<div class="area-new-life">
+    <div class="area-new-life-box">
+        <div class="area-new-life-look line-bottom">查找新世界城市活动信息</div>
+        <div class="area-new-life-look-msg">每一个城市有不同的活动信息，请自主查询您所需要了解的城市</div>
+        <div class="area-new-life-flex">
+            <div class="area-new-life-item">
+                <select>
+                    <option value="">中国</option>
+                </select>
+            </div>
+            <div class="area-new-life-item">
+                <select>
+                    <option value="">省份</option>
+                    <option value="">四川省</option>
+                </select>
+            </div>
+            <div class="area-new-life-item">
+                <select>
+                    <option value="">成都</option>
+                    <option value="">绵阳</option>
+                    <option value="">遂宁</option>
+                    <option value="">达州</option>
+                    <option value="">德阳</option>
+                </select>
+            </div>
+            <div class="area-new-life-item">搜索</div>
+        </div>
+    </div>
+
+</div>
+<div class="activity-new-life">
+
+</div>
+<div class="time-new-life">
+
+</div>
+<div class="protocol-new-life">
+
+</div>
+<div class="contact-new-life">
+
+</div>
+<script>
+
+</script>
+</body>
+</html>
