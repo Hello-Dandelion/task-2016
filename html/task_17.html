@@ -114,7 +114,6 @@
         var time = pageState.nowGraTime;
         var data = chartData[time];
         var str = '';
-        console.log(data);
         for(var k in data){
             var color = bgColor[(Math.random()*(bgColor.length))|0];
             str += '<div class="item '+time+'" style="height: '+ data[k] + 'px;background-color: ' + color + ';" title="'+k+'：'+data[k]+'"></div>';
