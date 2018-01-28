@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础JavaScript练习（三）</title>
+    <style>
+        .base-box{
+            margin-bottom: 10px;
+        }
+        .base-box:nth-child(1){
+            height: 106px;
+        }
+        .base-box:nth-child(2){
+            height: 22px;
+        }
+        #txtArea{
+            width: 180px;
+            height: 100px;
+        }
+        .base{
+            float: left;
+            margin-right: 15px;
+        }
+        .base:after,
+        .item:after{
+            content: '';
+            clear: both;
+        }
+        .margin-top{
+            margin-top: 84px;
+        }
+        ul{
+            clear: both;
+            padding: 0;
+        }
+        .item{
+            float: left;
+            list-style: none;
+            padding: 3px 10px;
+            margin-right: 12px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        .active{
+            color: #ff97ae;
+        }
+    </style>
+</head>
+<body>
+<!--
+基于任务18进行升级
+将新元素输入框从input改为textarea
+允许一次批量输入多个内容，格式可以为数字、中文、英文等，
+可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为不同内容的间隔
+增加一个查询文本输入框，和一个查询按钮，当点击查询时，
+将查询词在各个元素内容中做模糊匹配，将匹配到的内容进行特殊标识，
+如文字颜色等。举例，内容中有abcd，查询词为ab或bc，则该内容需要标识
+-->
+<div class="base-box">
+    <textarea class="base" id="txtArea"></textarea>
+    <button class="base margin-top btn" name="confirm">确认</button>
+</div>
+<div class="base-box">
+    <input class="base" type="text" id="txtInput">
+    <button class="base btn" name="query">查询</button>
+    <span class="base">注：查询到到内容进行特殊标识</span>
+</div>
+<ul id="parentItems">
+</ul>
+<script>
+    var obj = {
+        confirm:function () {
+            var val = $('#txtArea').value;
+            if(val){
+                var li = document.createElement('li');
+                li.className = 'item';
+                var textNode = document.createTextNode(val);
+                li.appendChild(textNode);
+                $('#parentItems').appendChild(li);
+                $('#txtArea').value = '';
+            }else{
+                alert('输入内容不能为空');
+            }
+        },
+        query:function () {
+            var val = $('#txtInput').value;
+            if(val && $('.item').length>0){
+                var reg = new RegExp('('+val+')+','g');
+                for(var i = 0; i<$('.item').length;i++){
+                    var str = $('.item')[i].innerText;
+                    if(reg.test(str)){
+                        var newStr = str.replace(reg,function (v) {
+                            return '<span class="active">'+v+'</span>';
+                        });
+                        $('.item')[i].innerHTML = newStr;
+                    }
+                }
+                $('#txtInput').value = '';
+            }else if($('.item').length == 0){
+                alert('先输入内容再查询');
+            }else if(val == false){
+                alert('查询内容不能为空');
+            }
+        }
+    };
+    for(var i = 0; i<$('.btn').length;i++){
+        (function (n) {
+            addEvent($('.btn')[n],'click',function () {
+                obj[this.name]();
+            });
+        })(i);
+    }
+    function addEvent(element,event,listener) {
+        var event = event || window.event;
+        if(element.addEventListener){
+            element.addEventListener(event,listener,false);
+        }else if(element.attachEvent){
+            element.attachEvent('on'+event,listener);
+        }else {
+            element['on'+event] = listener;
+        }
+    }
+
+    function $(v) {
+        if(/^#/.test(v)){
+            return document.getElementById(v.replace(/#/,''));
+        }
+        if(/^./.test(v)){
+            return document.getElementsByClassName(v.replace(/./,''));
+        }
+    }
+</script>
+</body>
+</html>
