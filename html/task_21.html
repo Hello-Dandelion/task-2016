@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础JavaScript练习（四）</title>
+    <style>
+        #tag-box,#btn{
+            margin: 15px 0;
+        }
+        #tag-box,#hobby-box{
+            height: 30px;
+        }
+        #tag-box>span,
+        #hobby-box>span{
+            padding: 4px 8px;
+            margin-right: 10px;
+            color: #fff;
+            border-radius: 3px;
+            background-color: #fd8c84;
+        }
+        #tag-box>span:hover{
+            cursor: pointer;
+            background-color: #bbb;
+        }
+        #txtArea{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!--
+基于任务20，将任务20的代码进行抽象、封装，然后在此基础上实现如图中的两个需求：Tag输入和兴趣爱好输入
+如示例图上方，实现一个tag输入框
+要求遇到用户输入空格，逗号，回车时，都自动把当前输入的内容作为一个tag放在输入框下面。
+Tag不能有重复的，遇到重复输入的Tag，自动忽视。
+每个Tag请做trim处理
+最多允许10个Tag，多于10个时，按照录入的先后顺序，把最前面的删掉
+当鼠标悬停在tag上时，tag前增加删除二字，点击tag可删除
+如示例图下方，实现一个兴趣爱好输入的功能
+通过一个Textarea进行兴趣爱好的输入，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为间隔。
+当点击“确认兴趣爱好”的按钮时，将textarea中的输入按照你设定的间隔符，拆解成一个个的爱好，显示在textarea下方
+爱好不能重复，所以在下方呈现前，需要做一个去重
+每个爱好内容需要做trim处理
+最多允许10个兴趣爱好，多于10个时，按照录入的先后顺序，把最前面的删掉
+-->
+<div>Tag：<input type="text" id="tagInput" placeholder="按enter键即可生成标签"></div>
+<div id="tag-box">
+
+</div>
+<textarea id="txtArea" cols="30" rows="10" placeholder="输入兴趣爱好"></textarea>
+<button id="btn">确定</button>
+<div id="hobby-box">
+
+</div>
+<script>
+    //--------------------tag--------------------
+    //判断是input有焦点时，enter有效
+    var isFocus = false;
+    addEvent($('#tagInput'),'focus',function () {
+        isFocus = true;
+    });
+    addEvent($('#txtArea'),'focus',function () {
+        isFocus = false;
+    });
+    //按enter键生成标签
+    addEvent(document,'keydown',function (ev) {
+        var ev = ev || window.event;//火狐中是 window.event
+        if (ev.keyCode == 13 && isFocus) {
+            var val = $('#tagInput').value.trim(),
+                span = document.createElement('span'),
+                spanTxt = document.createTextNode(val),
+                childrenEle = document.getElementsByClassName('itemTag');
+            span.setAttribute('class','itemTag'),
+                span.appendChild(spanTxt);
+            if(childrenEle.length>0){
+                for(var i=0;i<childrenEle.length;i++){
+                    if(val == childrenEle[i].innerText){
+                        $('#tagInput').value = '';
+                        return;
+                    }
+                }
+            }
+
+            if(childrenEle.length>=10){
+                $('#tag-box').removeChild(childrenEle[0]);
+            }
+            $('#tag-box').appendChild(span);
+            $('#tagInput').value = '';
+        }
+    });
+
+    //鼠标悬停在tag上
+    var tagDiv = document.getElementById('tag-box');
+    addEvent(tagDiv,'mouseover',function (ev) {
+        var ev = ev || window.event,
+            target = ev.target || ev.srcElement;//火狐和ie
+        if(target.nodeName == 'SPAN') {
+            target.firstChild.insertData(0,'点击删除');
+            //target.innerText = '点击删除' + target.innerText;
+        }
+    });
+
+    //删除标签
+    addEvent(tagDiv,'click',function (ev) {
+        var ev = ev || window.event,
+            target = ev.target || ev.srcElement;//火狐和ie
+        if(target.nodeName == 'SPAN') {
+            target.remove();
+        }
+    });
+
+    //鼠标离开tag
+    addEvent(tagDiv,'mouseout',function (ev) {
+        var ev = ev || window.event,
+            target = ev.target || ev.srcElement;
+        if(target.nodeName == 'SPAN'){
+            target.firstChild.deleteData(0,4);
+            //target.innerText = target.innerText.replace(/点击删除/,'');
+        }
+    });
+
+    //--------------------textarea--------------------
+    addEvent($('#btn'),'click',function () {
+        var val = $('#txtArea').value,
+            arr = val.match(/(\w+|([\u4e00-\u9fa5]{0,}))[^,，;；、\s\t\n]/g),
+            preHobbyItem = document.getElementsByClassName('hobbyItem'),
+            docFragemnt = document.createDocumentFragment();//创建文档碎片，把所有新增节点添加完后再一次性添加到指定的父元素里
+        for(var i =0;i<arr.length;i++){
+            var val = arr[i].trim(),
+                flag= true;
+            if(preHobbyItem.length>0){
+                for(var j =0;j<preHobbyItem.length;j++){
+                    if(val == preHobbyItem[j].innerText.trim()){
+                        flag = false; //遍历已有的兴趣爱好标签，如有不允许重复添加
+                    }
+                }
+            }
+            if(flag){
+                var span = document.createElement('span'),
+                    spanTxt = document.createTextNode(val);
+                span.setAttribute('class','hobbyItem');
+                span.appendChild(spanTxt);
+                docFragemnt.appendChild(span);
+            }
+        }
+
+        $('#hobby-box').appendChild(docFragemnt);
+        var len = document.getElementsByClassName('hobbyItem').length;//添加后获取hobbyItem的个数
+        //兴趣爱好超过10个，删除最开始添加的
+        for(var i=len;i>0;i--){
+            if(i>10){
+                hobbyItem[0].remove();
+            }
+        }
+        $('#txtArea').value = '';
+    });
+
+    /*
+    * 获取只含id的元素
+    * return:DOM元素
+    * */
+    function $(id) {
+        if(/^#/.test(id)){
+            return document.getElementById(id.replace(/^#/,''));
+        }
+    }
+    /*
+    * 事件兼容
+    * @params {HTMLElement} ele 作用元素
+    * @params {string} event 事件类型
+    * @params {function} fn 监听事件
+    * */
+    function addEvent(ele,event,fn) {
+        if(ele.addEventListener){
+            ele.addEventListener(event,fn,false);
+        }else if(ele.attachEvent){
+            ele.attachEvent('on'+event,fn);
+        }else{
+            ele['on'+event] = fn;
+        }
+    }
+
+</script>
+</body>
+</html>
