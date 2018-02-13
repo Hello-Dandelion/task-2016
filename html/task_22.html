@@ -94,11 +94,12 @@
 <script>
 
     var root = $('#root'),
+        item = document.getElementsByClassName('item'),
+        len = item.length,
         obj = {
             eleList:[],
             bgColor:['#fd8c84','#45C90A','#30b9f8','#c2c2c2'],
-            timer:null,
-            x:0
+            timer:null
         };
     //前序：根左右
     addEvent($('#DLR'),'click',function () {
@@ -151,19 +152,16 @@
     }
     //渲染背景色
     function render(eleArr) {
+        var x = 0;
         obj.timer = setInterval(function () {
-            if(obj.x > 0 && obj.x <= eleArr.length){
-                eleArr[obj.x-1].style.backgroundColor = '#fff';
+            if(x > 0 && x <= eleArr.length){
+                eleArr[x-1].style.backgroundColor = '#fff';
             }
-            if(obj.x == eleArr.length){
-                clearInterval(obj.timer);
-                obj.x = 0;
-                obj.eleList = [];
-            }else{
-                var attr = eleArr[obj.x].getAttribute('class');
+            if(x != eleArr.length){
+                var attr = eleArr[x].getAttribute('class');
                 var index = parseInt(attr.match(/\d$/)[0]);
-                eleArr[obj.x].style.backgroundColor = obj.bgColor[index];
-                obj.x += 1;
+                eleArr[x].style.backgroundColor = obj.bgColor[index];
+                x += 1;
             }
         },500);
 
@@ -172,6 +170,10 @@
     //重置eleList数组
     function resetArr() {
         obj.eleList = [];
+        clearInterval(obj.timer);
+        for(var i = 0; i < len; i++){
+            item[i].style.backgroundColor = '#fff';
+        }
     }
     /*
     * 去掉文本节点
