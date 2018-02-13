@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript和树（一）</title>
+    <style>
+        #root{
+            margin:30px auto;
+            width: 800px;
+            height: 300px;
+            border: 2px solid #fd8c84;
+        }
+        .item{
+            float: left;
+            margin: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .item:after{
+            content: '';
+            display: inline-block;
+            clear: both;
+        }
+        .item-1{
+            width: calc(50% - 40px);
+            height: calc(100% - 40px);
+            border: 2px solid #45C90A;
+        }
+        .item-2{
+            width: calc(50% - 40px);
+            height: calc(100% - 40px);
+            border: 2px solid #30b9f8;
+        }
+        .item-3{
+            width: calc(50% - 40px);
+            height: calc(100% - 40px);
+            border: 2px solid #c2c2c2;
+        }
+        .btn-box{
+            margin: 40px auto 0;
+            display: flex;
+            width: 300px;
+        }
+        .item-btn{
+            flex: 1;
+            padding: 8px 12px;
+            margin: 0 10px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #fd8c84;
+        }
+    </style>
+</head>
+<body>
+<!--
+在页面中展现一颗二叉树的结构
+提供一个按钮，显示开始遍历，点击后，以动画的形式呈现遍历的过程
+二叉树的遍历算法和方式自定，前序中序后序皆可，但推荐可以提供多种算法的展示（增加多个按钮，每个按钮对应不同的算法）
+当前被遍历到的节点做一个特殊显示（比如不同的颜色）
+每隔一段时间（500ms，1s等时间自定）再遍历下一个节点
+前序：根左右
+中序：左跟右
+后序：左右跟
+-->
+<div class="item-0" id="root">
+    <div class="item item-1">
+        <div class="item item-2">
+            <div class="item item-3"></div>
+            <div class="item item-3"></div>
+        </div>
+        <div class="item item-2">
+            <div class="item item-3"></div>
+            <div class="item item-3"></div>
+        </div>
+    </div>
+    <div class="item item-1">
+        <div class="item item-2">
+            <div class="item item-3"></div>
+            <div class="item item-3"></div>
+        </div>
+        <div class="item item-2">
+            <div class="item item-3"></div>
+            <div class="item item-3"></div>
+        </div>
+    </div>
+</div>
+<div class="btn-box">
+    <div class="item-btn" id="DLR">前</div>
+    <div class="item-btn" id="LDR">中</div>
+    <div class="item-btn" id="LRD">后</div>
+</div>
+<script>
+
+    var root = $('#root'),
+        item = document.getElementsByClassName('item'),
+        len = item.length,
+        obj = {
+            eleList:[],
+            bgColor:['#fd8c84','#45C90A','#30b9f8','#c2c2c2'],
+            timer:null
+        };
+    //前序：根左右
+    addEvent($('#DLR'),'click',function () {
+        resetArr();
+        DLR(removeTextNode(root));
+        render(obj.eleList);
+    });
+    //中序：左根右
+    addEvent($('#LDR'),'click',function () {
+        resetArr();
+        LDR(removeTextNode(root));
+        render(obj.eleList);
+    });
+    //后序：左右根
+    addEvent($('#LRD'),'click',function () {
+        resetArr();
+        LRD(removeTextNode(root));
+        render(obj.eleList);
+    });
+
+    //前序
+    function DLR(node) {
+        if(node.childNodes.length>0){
+            obj.eleList.push(node);
+            DLR(removeTextNode(node.firstChild));
+            DLR(removeTextNode(node.lastChild));
+        }else{
+            obj.eleList.push(node);
+        }
+    }
+    //中序
+    function LDR(node) {
+        if(node.childNodes.length>0){
+            LDR(removeTextNode(node.firstChild));
+            obj.eleList.push(node);
+            LDR(removeTextNode(node.lastChild));
+        }else{
+            obj.eleList.push(node);
+        }
+    }
+    //后序
+    function LRD(node) {
+        if(node.childNodes.length>0){
+            LRD(removeTextNode(node.firstChild));
+            LRD(removeTextNode(node.lastChild));
+            obj.eleList.push(node);
+        }else{
+            obj.eleList.push(node);
+        }
+    }
+    //渲染背景色
+    function render(eleArr) {
+        var x = 0;
+        obj.timer = setInterval(function () {
+            if(x > 0 && x <= eleArr.length){
+                eleArr[x-1].style.backgroundColor = '#fff';
+            }
+            if(x != eleArr.length){
+                var attr = eleArr[x].getAttribute('class');
+                var index = parseInt(attr.match(/\d$/)[0]);
+                eleArr[x].style.backgroundColor = obj.bgColor[index];
+                x += 1;
+            }
+        },500);
+
+    }
+
+    //重置eleList数组
+    function resetArr() {
+        obj.eleList = [];
+        clearInterval(obj.timer);
+        for(var i = 0; i < len; i++){
+            item[i].style.backgroundColor = '#fff';
+        }
+    }
+    /*
+    * 去掉文本节点
+    * @params {HTMLElement}
+    * */
+    function removeTextNode(p_node) {
+        var node = p_node.childNodes;
+        for(var i = 0; i < node.length; i++){
+            if(node[i].nodeType === 3){
+                node[i].remove();
+            }
+        }
+        return p_node;
+    }
+
+    /*
+    * 事件兼容
+    * @params {HTMLElement} ele 作用元素
+    * @params {string} event 事件类型
+    * @params {function} fn 监听事件
+    * */
+    function addEvent(ele,event,fn) {
+        if(ele.addEventListener){
+            ele.addEventListener(event,fn,false);
+        }else if(ele.attachEvent){
+            ele.attachEvent('on'+event,fn);
+        }else{
+            ele['on'+event] = fn;
+        }
+    }
+    /*
+    * 获取只含id的元素
+    * return:DOM元素
+    * */
+    function $(id) {
+        if(/^#/.test(id)){
+            return document.getElementById(id.replace(/^#/,''));
+        }
+    }
+</script>
+</body>
+</html>
